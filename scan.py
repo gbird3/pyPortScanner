@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 import sys, getopt
+import socket
+import subprocess
 
 def main(argv):
    host = ''
@@ -19,8 +21,26 @@ def main(argv):
          host = arg
       elif opt in ("-p", "--port"):
          port = arg
-   print('Host is', host)
-   print('Port is', port)
+   info = {
+       'host': host,
+       'port': port
+   }
+   print('Starting port scan on {} for port {}'.format(host, port))
+  
+   return info
+
+def scanPorts(ip, port):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    result = s.connect_ex((ip, int(port)))
+
+    if result == 0:
+        print("Port {}: Open".format(port))
+    else:
+        print("Port {}: Closed".format(port))
+    s.close()
+
 
 if __name__ == "__main__":
-   main(sys.argv[1:])
+   info = main(sys.argv[1:])
+
+   scanPorts(info['host'], info['port'])
