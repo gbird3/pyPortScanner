@@ -4,7 +4,7 @@ import sys, getopt
 import socket
 import subprocess
 
-def main(argv):
+def userInput(argv):
    host = ''
    port = ''
    helpMessage = 'python scan.py -i <host> -p <port>'
@@ -26,7 +26,7 @@ def main(argv):
        'port': port
    }
    print('Starting port scan on {} for port {}'.format(host, port))
-  
+
    return info
 
 def scanPorts(ip, port):
@@ -39,8 +39,10 @@ def scanPorts(ip, port):
         print("Port {}: Closed".format(port))
     s.close()
 
+def main():
+    info = userInput(sys.argv[1:])
+    scanPorts(info['host'], info['port'])
+
 
 if __name__ == "__main__":
-   info = main(sys.argv[1:])
-
-   scanPorts(info['host'], info['port'])
+    main()
