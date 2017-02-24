@@ -23,7 +23,6 @@ def userInput(argv):
            host = arg
        elif opt in ("-p", "--port"):
             port = arg
-            print(port)
 
    info = {
        'host': host,
