@@ -1,5 +1,11 @@
 #!/usr/bin/python
 
+########################################################
+##  Author: Greg Bird
+##  Github Profile: https://github.com/gbird3
+##  Github repo: https://github.com/gbird3/pyPortScanner
+########################################################
+
 import sys, getopt
 import socket
 import subprocess
