@@ -125,7 +125,7 @@ def getPorts(ip, port, stype, html):
                  "status": status}
             udpStatus.append(p)
 
-    if (html):
+    if (html == 'true'):
         htmlFile(ip, stype, tcpStatus, udpStatus)
 
 # Function to scan the host and ports using socket
@@ -187,6 +187,7 @@ def htmlFile(ip, stype, tcpStatus, udpStatus):
 
     myFile.close()
 
+    print()
     print ("scan.html file created.")
 
 def main():
